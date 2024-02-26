@@ -1,27 +1,12 @@
-import { useEffect, useState } from 'react';
-
-import NasaImage from './NasaImage';
-import './App.css';
+import SearchNasa from './features/SearchNasa';
+import NasaImage from './components/NasaImage';
 
 function App() {
-  const [imageUrl, setImageUrl] = useState();
-  const [imageAlt, setImageAlt] = useState();
-
-  async function fetchImage() {
-    const response = await fetch(process.env.REACT_APP_SERVER_URL + '/apod');
-    const data = await response.json();
-    console.log(data['hdurl']);
-    setImageUrl(data['hdurl']);
-    setImageAlt(data['description']);
-  }
-
-  useEffect( () => {
-    fetchImage();
-  }, [])
-
   return (
     <div className="App">
-      {imageUrl === undefined ? <p>Loading Image</p> : <NasaImage imageUrl={imageUrl} imageAlt={imageAlt} />}
+      <h1>Nasa Astronomy Picture of the Day</h1>
+      <SearchNasa />
+      <NasaImage />
     </div>
   );
 }
