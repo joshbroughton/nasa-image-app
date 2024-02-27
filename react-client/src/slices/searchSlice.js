@@ -2,14 +2,20 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const searchSlice = createSlice({
   name: 'search',
-  initialState: [],
+  initialState: {},
   reducers: {
     add: (state, action) => {
-      state.push(action.payload.data.collection.items)
-      return state
+      const searchTerm = action.payload.originalArgs.search;
+      if (state.searchTerm) {
+        state[`${searchTerm}`].push(action.payload.data.collection.items);
+      } else {
+        state[`${searchTerm}`] = action.payload.data.collection.items;
+      }
+      return state;
     },
     clear: (state) => {
-      state = []
+      state = {};
+      return state;
     },
   },
 })

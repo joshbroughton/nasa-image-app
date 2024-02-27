@@ -1,30 +1,22 @@
 import { useSelector } from 'react-redux';
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
 
-import SearchNasa from './components/SearchNasa';
 import NasaImage from './components/NasaImage';
 import SearchResults from './components/SearchResults';
-import Footer from './components/Footer/Footer';
-import Navbar from './components/Navbar';
+import Details from './components/Image';
+
 
 function App() {
-  const searchResults = useSelector((state) => state.search);
-
-  if (searchResults.length === 0) {
-    return (
-      <div className="App">
-        <Navbar />
-        <NasaImage />
-      </div>
-    );
-  } else {
-    return(
-      <div className="App">
-        <h1>Search Results</h1>
-        <SearchResults />
-      </div>
-    )
-  }
-
+  return(
+    <Routes>
+      <Route exact path="/" element={<NasaImage />}></Route>
+      <Route path="/search" element={<SearchResults />}></Route>
+      <Route path="/image/:nasaID" element={<Details />}></Route>
+    </Routes>
+  )
 }
 
 export default App;

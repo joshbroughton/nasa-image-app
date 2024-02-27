@@ -10,7 +10,10 @@ export const nasaApi = createApi({
     getSearch: build.query({
       query: ({search, page}) => `search/?search=${search}&page=${page}`
     }),
+    getImage: build.query({
+      query: ({nasaID}) => `image/${nasaID}`
+    })
   })
 })
 
-export const { useGetApodQuery, useLazyGetSearchQuery } = nasaApi;
+export const { useGetApodQuery, useLazyGetSearchQuery, useGetImageQuery } = nasaApi;
