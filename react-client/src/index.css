@@ -16,14 +16,24 @@ body {
 
 .image-container {
   display: flex;
-  justify-content: center;  /* Center the content horizontally */
-  align-items: center;      /* Center the content vertically */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.explanation {
+  max-width: 70%;
+  margin: 10px;
 }
 
 .full-image {
   max-width: 100%;
   display: block;
-  margin: 0 auto;  /* Center the image within its container */
+  margin: 0 auto;
+  border: 1px;
+  border-radius: 10px;
+  margin: 20px;
 }
 
 .image-anchor {
@@ -56,4 +66,37 @@ body {
   object-fit: cover;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: 'c a a b b';
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+}
+
+.page-title {
+  grid-area: a;
+}
+
+.search-form {
+  grid-area: b;
+}
+
+.search-input {
+  background-color: rgb(12, 16, 22);
+  min-width: 250px;
+  border: 1px solid grey;
+  border-radius: 6px;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: rgb(0, 187, 255);
 }

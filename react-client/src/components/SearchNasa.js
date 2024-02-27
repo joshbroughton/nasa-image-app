@@ -8,13 +8,13 @@ export default function SearchNasa() {
   const dispatch = useDispatch();
   // const searchResults = useSelector((state) => state.search);
 
-  const [search, setSearch] = useState("Search images");
+  const [search, setSearch] = useState("");
   const [trigger] = useLazyGetSearchQuery();
 
   return(
-    <form>
-      <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder=""></input>
-      <button onClick={async (e) => {
+    <form className="search-form">
+      <input className="search-input" type="text" placeholder="search images" value={search} onChange={(e) => setSearch(e.target.value)} placeholder=""></input>
+      <button className="search-button" onClick={async (e) => {
         e.preventDefault();
         dispatch(add(await trigger({search: search, page: 1})))
       }}
