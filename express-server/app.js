@@ -38,6 +38,18 @@ app.get('/search', cors(corsOptions), async (req, res) => {
   }
 })
 
+app.get('/image/:nasaID', cors(corsOptions), async (req, res) => {
+  const nasaID = req.params.nasaID;
+  try {
+    const response = await fetch(`https://images-api.nasa.gov/asset/${nasaID}`)
+    const data = await response.json();
+    console.log(data);
+    res.json(data)
+  } catch(error) {
+    console.error(error.message);
+  }
+})
+
 app.listen(port, () => {
   console.log(`Nasa Image Server is Listening`);
 })
