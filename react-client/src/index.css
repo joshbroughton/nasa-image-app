@@ -43,7 +43,7 @@ body {
 
 .results-container {
   display: flex;
-  width: 30%;
+  width: 40%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -60,6 +60,10 @@ body {
   padding: 20px;
   margin: 10px;
 }
+
+.search-result:hover {
+  border-color: rgb(0, 187, 255);
+}  
 
 .thumbnail-image {
   width: 200px;
@@ -80,7 +84,7 @@ body {
 .page-title {
   grid-area: b;
   color: white;
-  font-size: 32px;
+  font-size: 24px;
   margin: 20px;
 }
 
