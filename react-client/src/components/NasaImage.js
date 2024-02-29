@@ -1,13 +1,33 @@
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import  { orbit } from "ldrs";
 
 import { useGetApodQuery } from "../slices/nasaApi";
 
 export default function NasaImage() {
+
+
   orbit.register();
   const { data, isLoading, isSuccess } = useGetApodQuery();
 
-    return(
+  const cacheImage = async (src) => {
+    const promise = new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => resolve();
+      img.onerror = () => reject();
+    });
+
+    await Promise.all([promise])
+  };
+
+  useEffect(() => {
+    if (data) {
+      cacheImage(data.hdurl)
+    }
+  }, [isSuccess])
+
+  return(
       <AnimatePresence mode="wait">
           {isLoading && <motion.div
             key="loader"
@@ -39,5 +59,5 @@ export default function NasaImage() {
           <p className="explanation">Image copyright: {data.copyright}</p>
         </motion.div>}
       </AnimatePresence>
-    )
+  )
 }

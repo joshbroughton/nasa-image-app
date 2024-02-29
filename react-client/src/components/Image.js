@@ -1,4 +1,5 @@
 import { useParams, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { orbit } from "ldrs";
 
@@ -10,6 +11,23 @@ export default function Details() {
   const { nasaID } = useParams();
   const { state } = useLocation();
   const { data, isLoading, isSuccess } = useGetImageQuery({nasaID: nasaID});
+
+  const cacheImage = async (src) => {
+      const promise = new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => resolve();
+        img.onerror = () => reject();
+      });
+
+    await Promise.all([promise])
+  };
+
+  useEffect(() => {
+    if (data) {
+      cacheImage(data.collection.items[1].href)
+    }
+  }, [isSuccess])
 
   return(
     <AnimatePresence mode="wait">
