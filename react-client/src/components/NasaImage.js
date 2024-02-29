@@ -56,7 +56,7 @@ export default function NasaImage() {
             <img className="full-image" src={data.hdurl} alt={data.explanation}/>
           </a>
           <p className="explanation">{data.explanation}</p>
-          <p className="explanation">Image copyright: {data.copyright}</p>
+          {data.copyright && <p className="explanation">Image copyright: {data.copyright}</p>}
         </motion.div>}
       </AnimatePresence>
   )

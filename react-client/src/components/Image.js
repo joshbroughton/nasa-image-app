@@ -50,7 +50,7 @@ export default function Details() {
         initial={{ opacity: 0, scale: 1 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
-          duration: 3,
+          duration: 1,
         }}
         >
         <h2>{state.title}</h2>
